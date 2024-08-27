@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShowIP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+            margin: 0;
+            /* display: flex; */
+            justify-content: center;
+            align-items: center;
+            height: 250px;
+        }
+
+        select {
+            font-size: 16px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #fff;
+            cursor: pointer;
+            width: 500px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s;
+        }
+
+        select:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        p {
+            font-size: 18px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+    <link href="select2.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div>
+        <select id="bookmarkSelect"></select>
+        <p id="ipResult">Selecciona un marcador para ver la IP...</p>
+    </div>
+    <script src="jquery.min.js"></script>
+    <script src="select2.min.js"></script>
+    <script src="popup.js"></script>
+</body>
+
+</html>
