@@ -7,50 +7,44 @@
     <title>ShowIP</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            padding: 20px;
-            margin: 0;
-            /* display: flex; */
-            justify-content: center;
-            align-items: center;
-            height: 250px;
+            background-color: rgba(128, 128, 128, 0.125);
+            font-size: 15px;
+            height: 375px;
         }
 
         select {
-            font-size: 16px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            background-color: #fff;
-            cursor: pointer;
-            width: 500px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            transition: border-color 0.3s;
+            width: 375px;
+            height: 37px;
         }
 
-        select:focus {
-            border-color: #007bff;
-            outline: none;
+        .popup-icon {
+            height: 60px;
+            padding: 15px;
+            width: 60px;
         }
 
-        p {
-            font-size: 18px;
-            margin-top: 20px;
+        #ipResult {
             font-weight: bold;
         }
+
+        #copyBtn {
+            cursor: pointer;
+            margin: 15px;
+        }
     </style>
-    <link href="select2.min.css" rel="stylesheet" />
+    <link href="lib/fontawesome-6.6/css/all.min.css" rel="stylesheet" />
+    <link href="lib/select2-4.0.13/select2.min.css" rel="stylesheet" />
 </head>
 
 <body>
-    <div>
-        <select id="bookmarkSelect"></select>
-        <p id="ipResult">Selecciona un marcador para ver la IP...</p>
-    </div>
-    <script src="jquery.min.js"></script>
-    <script src="select2.min.js"></script>
+    <center><img src="icon.png" alt="Ícono de la extensión" class="popup-icon"></center>
+    <select id="bookmarkSelect"></select>
+    <p>
+        <span id="ipResult">Selecciona para buscar...</span>
+        <i id="copyBtn" class="fas fa-copy"></i>
+    </p>
+    <script src="lib/jquery-3.7.1.min.js"></script>
+    <script src="lib/select2-4.0.13/select2.min.js"></script>
     <script src="popup.js"></script>
 </body>
 

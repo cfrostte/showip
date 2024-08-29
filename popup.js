@@ -1,24 +1,19 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-  // Inicializar Select2 en el elemento select
   const bookmarkSelect = jQuery('#bookmarkSelect');
   bookmarkSelect.select2({
     placeholder: 'Buscar marcador...',
     allowClear: true
   });
 
-  // Obtener el elemento que muestra los resultados
   const ipResult = document.getElementById('ipResult');
+  const copyBtn = document.getElementById('copyBtn');
 
-  // Cargar y ordenar marcadores de cada carpeta
   chrome.bookmarks.getTree((bookmarkTreeNodes) => {
-    // 1. Cargar:
     bookmarkTreeNodes.forEach(poblarFavoritos);
-    // 2. Ordenar:
     ordenarOpciones();
   });
 
-  // Obtener IP cuando se elija un marcador
   bookmarkSelect.on('change', function () {
     const selectedUrl = bookmarkSelect.val();
     if (selectedUrl) {
@@ -26,10 +21,23 @@ document.addEventListener('DOMContentLoaded', function () {
       fetch(`https://dns.google/resolve?name=${url.hostname}`)
         .then(response => response.json())
         .then(data => {
-          const ip = data.Answer ? data.Answer[0].data : 'No se encontró la IP.';
-          ipResult.textContent = `La IP es: ${ip}`;
+          const ip = data.Answer ? 'Se encontró: ' + data.Answer[0].data : 'No se encontró nada.';
+          ipResult.textContent = `${ip}`;
         })
-        .catch(error => console.error('Error al obtener la IP:', error));
+        .catch(error => console.error('Error al conectar:', error));
+    }
+  });
+
+  copyBtn.addEventListener('click', () => {
+    const ipText = ipResult.textContent.split(': ')[1];
+    if (ipText) {
+      navigator.clipboard.writeText(ipText).then(() => {
+        const originalText = ipResult.textContent;
+        ipResult.textContent = `Se copió: ${ipText}`;
+        setTimeout(() => {
+          ipResult.textContent = originalText;
+        }, 2000);
+      }).catch(err => console.error('Error al copiar:', err));
     }
   });
 
@@ -55,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function ordenarOpciones() {
     const options = bookmarkSelect.children('option').toArray();
     options.sort((a, b) => a.text.localeCompare(b.text));
-    bookmarkSelect.empty(); // (vaciar actuales)
+    bookmarkSelect.empty();
     options.forEach(option => bookmarkSelect.append(option));
   }
 

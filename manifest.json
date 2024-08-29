@@ -1,11 +1,16 @@
 {
-    "manifest_version": 3,
-    "name": "ShowIP",
-    "version": "1.0",
-    "permissions": ["bookmarks"],
-    "action": {
-      "default_popup": "popup.html",
-      "default_title": "ShowIP"
-    }
+  "manifest_version": 3,
+  "name": "ShowIP",
+  "version": "1.0",
+  "permissions": [
+    "bookmarks"
+  ],
+  "action": {
+    "default_title": "ShowIP",
+    "default_popup": "popup.html",
+    "default_icon": "icon.png"
+  },
+  "icons": {
+    "512": "icon.png"
   }
-  
+}
