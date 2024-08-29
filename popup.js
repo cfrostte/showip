@@ -21,10 +21,10 @@ document.addEventListener('DOMContentLoaded', function () {
       fetch(`https://dns.google/resolve?name=${url.hostname}`)
         .then(response => response.json())
         .then(data => {
-          const ip = data.Answer ? 'Se encontró: ' + data.Answer[0].data : 'No se encontró nada.';
+          const ip = data.Answer ? 'Se encontró: ' + data.Answer[0].data : 'No se encontró nada ';
           ipResult.textContent = `${ip}`;
         })
-        .catch(error => console.error('Error al conectar:', error));
+        .catch(error => console.error('Error al conectar: ', error));
     }
   });
 
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
         setTimeout(() => {
           ipResult.textContent = originalText;
         }, 2000);
-      }).catch(err => console.error('Error al copiar:', err));
+      }).catch(err => console.error('Error al copiar: ', err));
     }
   });
 
